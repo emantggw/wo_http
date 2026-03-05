@@ -1,0 +1,28 @@
+name: wo_http
+description: Opinionated HTTP toolkit for Flutter with interceptors, retry, auth refresh, typed results, and multi-client support.
+version: 0.1.0
+repository: https://github.com/emantggw/wo_http
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.2
+  logger: ^2.6.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: false
+
+topics:
+  - http
+  - api-client
+  - networking
+  - flutter
+  - interceptors
