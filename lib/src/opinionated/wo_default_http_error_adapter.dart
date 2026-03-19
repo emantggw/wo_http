@@ -19,7 +19,7 @@ class WoDefaultHttpErrorAdapter implements WoHttpErrorAdapter {
   }
 
   String _extractFromMap(Map<String, dynamic> map) {
-    const keys = ['message', 'detail', 'error', 'msg', 'description'];
+    const keys = ['detail', 'message', 'error', 'msg', 'description'];
 
     for (final key in keys) {
       final value = map[key];

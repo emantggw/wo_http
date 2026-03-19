@@ -34,15 +34,24 @@ class WoResult<T> {
       return WoResult.success(parsed, statusCode: response.statusCode);
     }
 
+    final shouldAdaptErrorBody = response.statusCode < 500;
+    final errorMessage = shouldAdaptErrorBody
+        ? errorAdapter.adaptError(response.body) ?? _unknownErrorMessage
+        : _serverErrorMessage;
+
     return WoResult.error(
-        WoDataFailure(
-          errorAdapter.adaptError(response.body) ??
-              'An unknown error occurred.',
-          errorType: response.errorType,
-        ),
-        statusCode: response.statusCode);
+      WoDataFailure(
+        errorMessage,
+        errorType: response.errorType,
+      ),
+      statusCode: response.statusCode,
+    );
   }
 
   /// True when [failure] is null.
   bool get isSuccess => failure == null;
+
+  static const String _unknownErrorMessage = 'An unknown error occurred.';
+  static const String _serverErrorMessage =
+      'Something went wrong, please try again later.';
 }
