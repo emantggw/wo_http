@@ -55,7 +55,13 @@ class WoDataClientFactory {
     }
 
     interceptors
-        .add(WoDefaultRetryHttpInterceptor(maxRetries: definition.maxRetries));
+      ..add(
+        WoDefaultRetryHttpInterceptor(
+          maxRetries: definition.maxRetries,
+          retryOnlyGet: definition.retryOnlyGet,
+          retryableStatusCodes: definition.retryableStatusCodes,
+        ),
+      );
 
     interceptors.addAll(definition.interceptors);
 
