@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+- Added `retryOnlyGet` to `WoDataClientDefinition` with default `true`.
+- Added `retryableStatusCodes` to `WoDataClientDefinition` with default `{0, 408, 429, 500, 502, 503, 504}`.
+- Wired factory retry configuration into `WoDefaultRetryHttpInterceptor` for per-client retry policy.
+
 ## 0.1.1
 
 - Apply error adapter only for HTTP status codes below `500`.

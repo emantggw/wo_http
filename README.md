@@ -16,7 +16,7 @@ From `pub.dev`:
 
 ```yaml
 dependencies:
-  wo_http: ^0.1.0
+  wo_http: ^0.1.2
 ```
 
 Or local path:
@@ -172,6 +172,8 @@ final factory = WoDataClientFactory.fromDefinitions([
     baseUrl: 'https://api.example.com',
     enableLogging: true,
     maxRetries: 2,
+    retryOnlyGet: true,
+    retryableStatusCodes: {0, 408, 429, 500, 502, 503, 504},
     requestTimeout: const Duration(seconds: 30),
   ),
   WoDataClientDefinition(
@@ -179,6 +181,8 @@ final factory = WoDataClientFactory.fromDefinitions([
     baseUrl: 'https://ai.example.com',
     enableLogging: true,
     maxRetries: 1,
+    retryOnlyGet: false,
+    retryableStatusCodes: {429, 500, 503},
     requestTimeout: const Duration(seconds: 15),
   ),
 ]);
@@ -224,6 +228,7 @@ if (registry.isRegistered<WoHttpClient>()) {
 ## Notes
 
 - Retry behavior is status-code-based in `WoDefaultRetryHttpInterceptor`.
+- Factory defaults retry to `GET` requests only; set `retryOnlyGet: false` to retry all methods.
 - Factory logging is active in debug mode (`kDebugMode`) only.
 
 ## Author
