@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3
+
+- Added automatic Content-Type inference for `WoUploadFile` based on common image and audio extensions.
+- Integrated inferred `contentType` into `WoDefaultHttpApiClient` multipart uploads.
+- Added tests for `WoUploadFile` content-type logic.
+
 ## 0.1.2
 
 - Added `retryOnlyGet` to `WoDataClientDefinition` with default `true`.

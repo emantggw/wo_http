@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 import '../../wo_http.dart';
 
@@ -313,11 +314,16 @@ class WoDefaultHttpApiClient implements WoHttpClient {
 
       final files = request.files ?? <WoUploadFile>[];
       for (final file in files) {
+        final contentType = file.contentType != null
+            ? MediaType.parse(file.contentType!)
+            : null;
+
         if (file.bytes != null && file.bytes!.isNotEmpty) {
           multipart.files.add(http.MultipartFile.fromBytes(
             request.fileFieldName,
             file.bytes!,
             filename: file.filename,
+            contentType: contentType,
           ));
           continue;
         }
@@ -328,6 +334,7 @@ class WoDefaultHttpApiClient implements WoHttpClient {
               request.fileFieldName,
               file.path!,
               filename: file.filename,
+              contentType: contentType,
             ),
           );
         }
