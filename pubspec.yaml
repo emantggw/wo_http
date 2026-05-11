@@ -1,6 +1,6 @@
 name: wo_http
 description: Opinionated HTTP toolkit for Flutter with interceptors, retry, auth refresh, typed results, and multi-client support.
-version: 0.1.3
+version: 0.1.4
 repository: https://github.com/emantggw/wo_http
 
 environment:

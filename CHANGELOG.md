@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4
+
+- Fixed disabled logging so explicitly provided default logging interceptors are skipped when `enableLogging` is `false`.
+- Added coverage for `WoDataClientFactory` logging interceptor filtering.
+
 ## 0.1.3
 
 - Added automatic Content-Type inference for `WoUploadFile` based on common image and audio extensions.

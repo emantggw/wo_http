@@ -63,7 +63,13 @@ class WoDataClientFactory {
         ),
       );
 
-    interceptors.addAll(definition.interceptors);
+    interceptors.addAll(
+      definition.interceptors.where(
+        (interceptor) =>
+            definition.enableLogging ||
+            interceptor is! WoDefaultHttpLoggingInterceptor,
+      ),
+    );
 
     return WoDefaultHttpApiClient(
       baseUrl: definition.baseUrl,
